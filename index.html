@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(180deg, #010a16 0%, #061c33 50%, #010a16 100%);
+            background: linear-gradient(180deg, #010a16 0%, #062333 50%, #010a16 100%);
             color: #e2e8f0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
@@ -433,5 +433,34 @@
             setInterval(fetchRealtimeMatches, CONFIG.AUTO_REFRESH_SECONDS * 1000);
         });
     </script>
+    <script>
+  // 1. Matikan Klik Kanan (Context Menu)
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // 2. Matikan Kombinasi Tombol Keyboard (Ctrl+U, F12, Ctrl+Shift+I, dll)
+  document.addEventListener('keydown', function(e) {
+    // Matikan F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+    }
+    
+    // Matikan Ctrl+U (View Source)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+      e.preventDefault();
+    }
+
+    // Matikan Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspect Element)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+      e.preventDefault();
+    }
+
+    // Matikan Ctrl+S (Save Page)
+    if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+      e.preventDefault();
+    }
+  });
+</script>
 </body>
 </html>
